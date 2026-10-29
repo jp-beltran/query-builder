@@ -5,7 +5,7 @@ export default {
     filename: "./src/database/database.db"
   },
   useNullAsDefault: true,
-  migratons: {
+  migrations: {
     extensions: "ts",
     directory: "./src/database/migrations"
   }
