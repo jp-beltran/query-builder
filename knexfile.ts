@@ -1,7 +1,7 @@
 export default {
   //config do knex
   client: "sqlite3",
-  conections: {
+  connection: {
     filename: "./src/database/database.db"
   },
   useNullAsDefault: true,
