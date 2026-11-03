@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<void> {
 
 
     //Chave estrangeira, esta conectada ao id da tabela de courses
-    table.integer("course_id").references("id").inTable("courses")
+    table.integer("course_id").notNullable().references("id").inTable("courses")
   })
 }
 
