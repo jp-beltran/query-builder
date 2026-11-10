@@ -38,9 +38,34 @@ app.post("/modules", async (request: Request, response: Response) => {
 });
 
 app.get("/modules", async (request: Request, response: Response) => {
-  const courses = await knex("course_modules").select();
+  const modules = await knex("course_modules").select();
 
-  return response.json({ courses });
+  return response.json({ modules });
 });
+
+app.get(
+  "/courses/:id/modules",
+  async (request: Request, response: Response) => {
+    const modules = await knex("course_modules").select();
+
+    return response.json({ modules });
+  },
+);
+
+app.get(
+  "/courses/:id/modules",
+  async (request: Request, response: Response) => {
+    const courses = await knex("courses")
+      .select(
+        "courses.id AS course_id",
+        "course_modules.id AS module_id",
+        "course_modules.name AS module",
+        "course.name AS course",
+      )
+      .join("course_modules", "course.id", "course_modules.course_id");
+
+    return response.json({ courses });
+  },
+);
 
 app.listen(3333, () => console.log(`Server is running on port 3333`));
